@@ -57,7 +57,7 @@ elif time[0] == '*' and time[-1] == '*': # Adding time for any date this year
 
 elif time[0] != '*' and '*' in time: # Adding time for any day of current month
 	over = open('over.txt','a')
-	if len(time[time.find('*')]) < 3:
+	if len(time[time.find('*'):]) < 3:
 		over.write(someday + time[:time.find('*')] + ' - ' + time[time.find('*')+1:] + '.00' + '\n')
 	else:
 		over.write(someday + time[:time.find('*')] + ' - ' + time[time.find('*')+1:] + '\n')
