@@ -25,21 +25,23 @@ if len(time) == 0: # Print the data and count current overtimes
 
 elif time == 'help':
 	print('''
-Adding overtime for today: <time>
+Adding overtime for today: <time> Note: if workingday is not over the time will go for yestarday
 Adding overtime for yestarday: *<time>
 Adding overtime for any day of current month: <day>*<time>
 Adding overtime for any date this year: *<time>* and after that: <month>.<day>
 Instance of <time>: 1, 1.30, 1.55, 1,00
 		''')
 
-elif '*' not in time: # Adding overtime for today 
+elif '*' not in time and datetime.now().hour >= 19: # Adding overtime for today 
 	over = open('over.txt','a')
 	if len(time) == 1:
 		over.write(today + ' - ' + time + '.00' + '\n') # If only hour entered adding minutes
 	else:
 		over.write(today + ' - ' + time + '\n')
 
-elif time[0] == '*' and time[-1] != '*': # Adding overtime for yestarday 
+elif (time[0] == '*' and time[-1] != '*') or datetime.now().hour < 19: # Adding overtime for yestarday
+	if datetime.now().hour < 19:
+		time = '*' + time
 	over = open('over.txt','a')
 	if len(time) == 2:
 		over.write(yesterday + ' - ' + time[1:] + '.00' + '\n')
