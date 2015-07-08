@@ -22,6 +22,7 @@ if len(time) == 0: # Print the data and count current overtimes
 				pass
 		line = over.readline()
 	print('Totally ' + str(total) + ' hours')
+	exit()
 
 elif time == 'help':
 	print('''
@@ -31,6 +32,7 @@ Adding overtime for any day of current month: <day>*<time>
 Adding overtime for any date this year: *<time>* and after that: <month>.<day>
 Instance of <time>: 1, 1.30, 1.55, 1,00
 		''')
+	exit()
 
 elif '*' not in time and datetime.now().hour >= 19: # Adding overtime for today 
 	over = open('over.txt','a')
@@ -64,5 +66,14 @@ elif time[0] != '*' and '*' in time: # Adding time for any day of current month
 	else:
 		over.write(someday + time[:time.find('*')] + ' - ' + time[time.find('*')+1:] + '\n')
 
-elif time != 'help':
-	over.close()
+over.close()
+
+o = open('over.txt','r')
+line = o.readline()
+data = []
+while line:
+	line = o.readline()
+	data.append(line)
+o.close()
+
+print(data[-2])
