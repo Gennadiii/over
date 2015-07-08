@@ -68,7 +68,7 @@ elif time[0] != '*' and '*' in time: # Adding time for any day of current month
 
 over.close()
 
-o = open('over.txt','r')
+o = open('over.txt','r') # Adding all overtimes to list to show up the last one
 line = o.readline()
 data = []
 while line:
@@ -76,4 +76,5 @@ while line:
 	data.append(line)
 o.close()
 
-print(data[-2])
+print('\n' + data[-2])
+print(today + ' - today')
