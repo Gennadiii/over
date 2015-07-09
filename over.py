@@ -24,6 +24,7 @@ if len(time) == 0: # Print the data and count current overtimes
 				pass
 		line = over.readline()
 	print('Totally ' + str(total) + ' hours')
+	over.close()
 	exit()
 
 elif time == 'help':
